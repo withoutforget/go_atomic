@@ -1,6 +1,6 @@
 #include "textflag.h"
 
-// func AtomicStore32(dst*int32, src int32)
+// func AtomicStore32(dst *int32, src int32)
 TEXT ·AtomicStore32(SB), NOSPLIT, $0-12
     MOVQ x+0(FP), AX
     MOVL y+8(FP), BX
