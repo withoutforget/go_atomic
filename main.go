@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-	"withoutforget/go_atomic/src/atomic32"
+	"withoutforget/go_atomic/src/atomic64"
 )
 
 func main() {
-	a := atomic32.AtomicU32{}
-	for range 10 {
-		a.Add(1)
-	}
+	a := atomic64.AtomicU64{}
+	a.Store(uint64(42))
 	fmt.Println(a.Load())
 }
