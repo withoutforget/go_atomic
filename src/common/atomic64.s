@@ -4,14 +4,14 @@
 TEXT ·AtomicStore64(SB), NOSPLIT, $0-16
     MOVQ x+0(FP), AX
     MOVQ y+8(FP), BX
-    MOVQ BX, (AX)
+    XCHGQ BX, (AX)
     RET
 
 // func AtomicLoad64(src *int64) int64
 TEXT ·AtomicLoad64(SB), NOSPLIT, $0-16
     MOVQ x+0(FP), AX
     MOVQ (AX), AX
-    MOVQ AX, ret+8(FP)
+    XCHGQ AX, ret+8(FP)
     RET
 
 // func AtomicAdd64(dst *int64, val int64)
