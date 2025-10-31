@@ -1,51 +1,179 @@
 #include "textflag.h"
 
-// func AtomicStore64(dst *int64, src int64)
-TEXT ·AtomicStore64(SB), NOSPLIT, $0-16
+// func AtomicStore64Relaxed(dst *int64, src int64)
+TEXT ·AtomicStore64Relaxed(SB), NOSPLIT, $0-16
     MOVQ x+0(FP), AX
     MOVQ y+8(FP), BX
     XCHGQ BX, (AX)
     RET
 
-// func AtomicLoad64(src *int64) int64
-TEXT ·AtomicLoad64(SB), NOSPLIT, $0-16
+// func AtomicStore64Release(dst *int64, src int64)
+TEXT ·AtomicStore64Release(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    MOVQ BX, (AX)
+    RET
+
+// func AtomicStore64SeqCst(dst *int64, src int64)
+TEXT ·AtomicStore64SeqCst(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    MOVQ BX, (AX)
+    RET
+
+
+// func AtomicLoad64Relaxed(src *int64) int64
+TEXT ·AtomicLoad64Relaxed(SB), NOSPLIT, $0-16
     MOVQ x+0(FP), AX
     MOVQ (AX), AX
     XCHGQ AX, ret+8(FP)
     RET
 
-// func AtomicAdd64(dst *int64, val int64)
-TEXT ·AtomicAdd16(SB), NOSPLIT, $0-16
+// func AtomicLoad64Acquire(src *int64) int64
+TEXT ·AtomicLoad64Acquire(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ (AX), AX
+    MOVQ AX, ret+8(FP)
+    RET
+
+// func AtomicLoad64SeqCst(src *int64) int64
+TEXT ·AtomicLoad64SeqCst(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ (AX), AX
+    MOVQ AX, ret+8(FP)
+    RET
+
+
+// func AtomicAdd64Relaxed(dst *int64, val int64)
+TEXT ·AtomicAdd64Relaxed(SB), NOSPLIT, $0-16
     MOVQ x+0(FP), AX
     MOVQ y+8(FP), BX
     LOCK
     XADDQ BX, (AX)
     RET
 
-// func AtomicOr64(dst *int64, val int64)
-TEXT ·AtomicOr64(SB), NOSPLIT, $0-16
+// func AtomicAdd64Acquire(dst *int64, val int64)
+TEXT ·AtomicAdd64Acquire(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    XADDQ BX, (AX)
+    RET
+
+// func AtomicAdd64Release(dst *int64, val int64)
+TEXT ·AtomicAdd64Release(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    XADDQ BX, (AX)
+    RET
+
+// func AtomicAdd64AcqRel(dst *int64, val int64)
+TEXT ·AtomicAdd64AcqRel(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    XADDQ BX, (AX)
+    RET
+
+// func AtomicAdd64SeqCst(dst *int64, val int64)
+TEXT ·AtomicAdd64SeqCst(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    XADDQ BX, (AX)
+    RET
+
+
+// func AtomicOr64Relaxed(dst *int64, val int64)
+TEXT ·AtomicOr64Relaxed(SB), NOSPLIT, $0-16
     MOVQ x+0(FP), AX
     MOVQ y+8(FP), BX
     LOCK
     ORQ BX, (AX)
     RET
 
-// func AtomicAnd64(dst *int64, val int64)
-TEXT ·AtomicAnd64(SB), NOSPLIT, $0-16
+// func AtomicOr64Acquire(dst *int64, val int64)
+TEXT ·AtomicOr64Acquire(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ORQ BX, (AX)
+    RET
+
+// func AtomicOr64Release(dst *int64, val int64)
+TEXT ·AtomicOr64Release(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ORQ BX, (AX)
+    RET
+
+// func AtomicOr64AcqRel(dst *int64, val int64)
+TEXT ·AtomicOr64AcqRel(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ORQ BX, (AX)
+    RET
+
+// func AtomicOr64SeqCst(dst *int64, val int64)
+TEXT ·AtomicOr64SeqCst(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ORQ BX, (AX)
+    RET
+
+
+// func AtomicAnd64Relaxed(dst *int64, val int64)
+TEXT ·AtomicAnd64Relaxed(SB), NOSPLIT, $0-16
     MOVQ x+0(FP), AX
     MOVQ y+8(FP), BX
     LOCK
     ANDQ BX, (AX)
     RET
 
-// func AtomicCAS64(dst *int64, old *int64, new int64) bool
+// func AtomicAnd64Acquire(dst *int64, val int64)
+TEXT ·AtomicAnd64Acquire(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ANDQ BX, (AX)
+    RET
+
+// func AtomicAnd64Release(dst *int64, val int64)
+TEXT ·AtomicAnd64Release(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ANDQ BX, (AX)
+    RET
+
+// func AtomicAnd64AcqRel(dst *int64, val int64)
+TEXT ·AtomicAnd64AcqRel(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ANDQ BX, (AX)
+    RET
+
+// func AtomicAnd64SeqCst(dst *int64, val int64)
+TEXT ·AtomicAnd64SeqCst(SB), NOSPLIT, $0-16
+    MOVQ x+0(FP), AX
+    MOVQ y+8(FP), BX
+    LOCK
+    ANDQ BX, (AX)
+    RET
+
+
+// func AtomicCAS64(dst *int64, old int64, new int64) bool
 TEXT ·AtomicCAS64(SB), NOSPLIT, $0-25
     MOVQ dst+0(FP), BX
     MOVQ old+8(FP), AX
     MOVQ new+16(FP), DX
-    MOVQ (AX),AX
+    LOCK
     CMPXCHGQ DX, (BX)
     SETEQ ret+24(FP)
     RET
     
-

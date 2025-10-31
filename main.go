@@ -7,6 +7,6 @@ import (
 
 func main() {
 	a := atomic64.AtomicU64{}
-	a.Store(14)
+	a.StoreRelease(14)
 	fmt.Println(a.Load())
 }
