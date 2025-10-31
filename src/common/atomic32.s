@@ -11,7 +11,7 @@ TEXT ·AtomicStore32Relaxed(SB), NOSPLIT, $0-12
 TEXT ·AtomicStore32Release(SB), NOSPLIT, $0-12
     MOVQ x+0(FP), AX
     MOVL y+8(FP), BX
-    MOVL BX, (AX)
+    XCHGL BX, (AX)
     RET
 
 // func AtomicStore32SeqCst(dst *int32, src int32)
@@ -33,7 +33,7 @@ TEXT ·AtomicLoad32Relaxed(SB), NOSPLIT, $0-12
 TEXT ·AtomicLoad32Acquire(SB), NOSPLIT, $0-12
     MOVQ x+0(FP), AX
     MOVL (AX), AX
-    MOVL AX, ret+8(FP)
+    XCHGL AX, ret+8(FP)
     RET
 
 // func AtomicLoad32SeqCst(src *int32) int32

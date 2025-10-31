@@ -109,4 +109,3 @@ TEXT ·AtomicAnd64(SB), NOSPLIT, $0-24
 // func AtomicCAS64(dst *Atomic64, old int64, new int64) bool
 TEXT ·AtomicCAS64(SB), NOSPLIT, $0-25
     JMP withoutforget∕go_atomic∕src∕common·AtomicCAS64(SB)
-    
