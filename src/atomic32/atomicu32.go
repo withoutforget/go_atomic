@@ -6,13 +6,13 @@ type AtomicU32 struct {
 	Data uint32
 }
 
-func AtomicStoreU32(dst *AtomicU32, src AtomicU32)
+func AtomicStoreU32(dst *AtomicU32, src uint32)
 func AtomicLoadU32(src *AtomicU32) AtomicU32
 func AtomicAddU32(dst *AtomicU32, val uint32)
 func AtomicOrU32(dst *AtomicU32, val uint32)
 func AtomicAndU32(dst *AtomicU32, val uint32)
 func AtomicCASU32(dst *AtomicU32, old uint32, new uint32) bool
-func (a *AtomicU32) Store(src AtomicU32) {
+func (a *AtomicU32) Store(src uint32) {
 	AtomicStoreU32(a, src)
 }
 
