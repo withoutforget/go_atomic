@@ -6,19 +6,16 @@ type Atomic64 struct {
 	Data int64
 }
 
-// Store operations
 func AtomicStore64Relaxed(dst *Atomic64, src int64)
 func AtomicStore64Release(dst *Atomic64, src int64)
 func AtomicStore64SeqCst(dst *Atomic64, src int64)
 func AtomicStore64(dst *Atomic64, src int64)
 
-// Load operations
 func AtomicLoad64Relaxed(src *Atomic64) int64
 func AtomicLoad64Acquire(src *Atomic64) int64
 func AtomicLoad64SeqCst(src *Atomic64) int64
 func AtomicLoad64(src *Atomic64) int64
 
-// Add operations
 func AtomicAdd64Relaxed(dst *Atomic64, val int64) int64
 func AtomicAdd64Acquire(dst *Atomic64, val int64) int64
 func AtomicAdd64Release(dst *Atomic64, val int64) int64
@@ -26,7 +23,6 @@ func AtomicAdd64AcqRel(dst *Atomic64, val int64) int64
 func AtomicAdd64SeqCst(dst *Atomic64, val int64) int64
 func AtomicAdd64(dst *Atomic64, val int64) int64
 
-// Or operations
 func AtomicOr64Relaxed(dst *Atomic64, val int64) int64
 func AtomicOr64Acquire(dst *Atomic64, val int64) int64
 func AtomicOr64Release(dst *Atomic64, val int64) int64
@@ -34,7 +30,6 @@ func AtomicOr64AcqRel(dst *Atomic64, val int64) int64
 func AtomicOr64SeqCst(dst *Atomic64, val int64) int64
 func AtomicOr64(dst *Atomic64, val int64) int64
 
-// And operations
 func AtomicAnd64Relaxed(dst *Atomic64, val int64) int64
 func AtomicAnd64Acquire(dst *Atomic64, val int64) int64
 func AtomicAnd64Release(dst *Atomic64, val int64) int64
@@ -42,10 +37,8 @@ func AtomicAnd64AcqRel(dst *Atomic64, val int64) int64
 func AtomicAnd64SeqCst(dst *Atomic64, val int64) int64
 func AtomicAnd64(dst *Atomic64, val int64) int64
 
-// CAS operation
 func AtomicCAS64(dst *Atomic64, old int64, new int64) bool
 
-// Store methods
 func (a *Atomic64) Store(src int64) {
 	AtomicStore64(a, src)
 }
@@ -62,7 +55,6 @@ func (a *Atomic64) StoreSeqCst(src int64) {
 	AtomicStore64SeqCst(a, src)
 }
 
-// Load methods
 func (a *Atomic64) Load() int64 {
 	return AtomicLoad64(a)
 }
@@ -104,7 +96,6 @@ func (a *Atomic64) AddSeqCst(val int64) int64 {
 	return AtomicAdd64SeqCst(a, val)
 }
 
-// Or methods
 func (a *Atomic64) Or(val int64) int64 {
 	return AtomicOr64(a, val)
 }
@@ -129,7 +120,6 @@ func (a *Atomic64) OrSeqCst(val int64) int64 {
 	return AtomicOr64SeqCst(a, val)
 }
 
-// And methods
 func (a *Atomic64) And(val int64) int64 {
 	return AtomicAnd64(a, val)
 }
@@ -154,7 +144,6 @@ func (a *Atomic64) AndSeqCst(val int64) int64 {
 	return AtomicAnd64SeqCst(a, val)
 }
 
-// CAS method
 func (a *Atomic64) CAS(old, new int64) bool {
 	return AtomicCAS64(a, old, new)
 }
